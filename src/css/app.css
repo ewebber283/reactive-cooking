@@ -1,6 +1,8 @@
 @import-normalize;
 @import 'recipe-list.css';
 @import 'buttons.css';
+@import 'recipe.css';
+@import 'ingredient-list.css';
 
 *, *::before, *::after {
     font-family: Arial, Helvetica, sans-serif, sans-serif
@@ -10,7 +12,11 @@ html {
     font-size: 25px;
   }
   
-  body {
+body {
     padding: 0;
     margin: 0;
+  }
+
+.mr-1 {
+    margin-right: 5px;
   }
