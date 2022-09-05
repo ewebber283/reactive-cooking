@@ -1,7 +1,7 @@
 import React from 'react'
 import Recipe from './Recipe'
 
-export default function RecipeList({ recipes, handleRecipeAdd }) {
+export default function RecipeList({ recipes, handleRecipeAdd, handleRecipeDelete }) {
   return (
     <div className="recipe-list">
       <div>
@@ -9,6 +9,7 @@ export default function RecipeList({ recipes, handleRecipeAdd }) {
           return (
             <Recipe
               key={recipe.id}
+              handleRecipeDelete={handleRecipeDelete}
               {...recipe}
             />
           )

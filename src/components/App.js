@@ -6,7 +6,8 @@ function App() {
   const [recipes, setRecipes] = useState(testRecipes)
   return (
     <RecipeList recipes={recipes} 
-    handleRecipeAdd={handleRecipeAdd}/>
+    handleRecipeAdd={handleRecipeAdd}
+    handleRecipeDelete={handleRecipeDelete}/>
   )
 
   function handleRecipeAdd() {
@@ -22,6 +23,11 @@ function App() {
     }
   
     setRecipes([...recipes, newRecipe])
+  }
+
+  function handleRecipeDelete(id) {
+    //get all recipes that is not recipe with id and set to current recipes
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 }
 
