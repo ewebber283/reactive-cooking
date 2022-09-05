@@ -3,9 +3,11 @@
 @import 'buttons.css';
 @import 'recipe.css';
 @import 'ingredient-list.css';
+@import 'recipe-edit.css';
 
 *, *::before, *::after {
-    font-family: Arial, Helvetica, sans-serif, sans-serif
+    font-family: Arial, Helvetica, sans-serif, sans-serif;
+    box-sizing: border-box;
 }
 
 html {
