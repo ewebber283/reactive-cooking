@@ -28,7 +28,8 @@ function App() {
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
-    handleRecipeSelect
+    handleRecipeSelect,
+    handleRecipeEdit
   }
 
   function handleRecipeSelect(id) {
@@ -48,6 +49,13 @@ function App() {
     }
 
     setRecipes([...recipes, newRecipe])
+  }
+
+  function handleRecipeEdit(id, recipe) {
+    const newRecipes = [...recipes]
+    const index = newRecipes.findIndex(r => r.id === id)
+    newRecipes[index] = recipe
+    setRecipes(newRecipes)
   }
 
   function handleRecipeDelete(id) {
