@@ -1,16 +1,13 @@
 import React from 'react'
 import Ingredient from './Ingredient'
+
 export default function IngredientList({ ingredients}) {
-    return (
-        <div className="ingredient-grid">
-            {ingredients.map(ingredient => {
-                return (
-                    <Ingredient key={ingredient.id} 
-                    {...ingredient} 
-                    />
-                )
-            })}
-        </div>
-        
-      )
+  const ingredientElements = ingredients.map(ingredient => {
+    return <Ingredient key={ingredient.id} {...ingredient} />
+  })
+  return (
+    <div className="ingredient-grid">
+      {ingredientElements}
+    </div>
+  )
 }

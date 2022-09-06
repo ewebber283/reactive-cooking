@@ -8,6 +8,7 @@ export const RecipeContext = React.createContext()
 const LOCAL_STORAGE_KEY = 'reactiveCooking.recipes'
 
 function App() {
+  const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(() => { 
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (recipeJSON == null) {
@@ -16,42 +17,49 @@ function App() {
       return JSON.parse(recipeJSON)
     }
   })
+  
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
   }, [recipes])
 
 
-  const RecipeContextValue = {
+  const recipeContextValue = {
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeSelect
   }
+
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id)
+  }
+
   function handleRecipeAdd() {
     const newRecipe = {
       id: uuidv4(),
-      name: 'test',
+      name: 'New',
       servings: 1,
       cookTime: '1:00',
-      instructions: 'Instruct',
+      instructions: 'Instr.',
       ingredients: [
-        { id: uuidv4(), name: 'name', amount: '1 tsp'}
+        { id: uuidv4(), name: 'Name', amount: '1 Tbs' }
       ]
     }
-  
+
     setRecipes([...recipes, newRecipe])
   }
 
   function handleRecipeDelete(id) {
-    //get all recipes that is not recipe with id and set to current recipes
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
+
   return (
-    <RecipeContext.Provider value={RecipeContextValue}>
-      <RecipeList recipes={recipes}/>
-      <RecipeEdit />
+    <RecipeContext.Provider value={recipeContextValue}>
+      <RecipeList recipes={recipes} />
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   )
-
 }
 
 
